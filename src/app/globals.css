@@ -2,32 +2,150 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* Scrolling animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
+.scroll-container {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.scroll-pause {
+  animation-play-state: paused;
+}
+
+/* You can add this to your global CSS file or directly in the JSX using className */
+
+.hero-decor {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-decor-bottom {
+  position: absolute;
+  bottom: 25%;
+  right: 25%;
+  transform: translate(50%, 50%);
+}
+
+/* This CSS ensures smooth scrolling */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 2));
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-x-12 > * + * {
+  margin-left: 3rem; /* Adjust space between elements */
+}
+
+.items-center {
+  align-items: center;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.text-2xl {
+  font-size: 1.5rem; /* Adjust font size */
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.flex.space-x-12.items-center {
+  animation: scroll 20s linear infinite;
+}
+/* styles/globals.css */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  overflow: -moz-hidden; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Hide scrollbar for all other elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Define the animation for the scrolling effect */
+@keyframes scrollTestimonials {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Apply the animation to the scroll container */
+.scroll-container {
+  display: flex;
+  animation: scrollTestimonials 20s linear infinite;
+}
+
+/* Adjust the animation timing to make it faster or slower */
+.scroll-container.scroll-pause {
+  animation-play-state: paused;
+}
+
+.carousel-container {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.carousel-wrapper {
+  display: flex;
+  will-change: transform;
+}
+
+.carousel-item {
+  display: inline-block;
+  padding: 0 1rem; /* Adjust spacing between items as needed */
+  white-space: nowrap;
+  font-size: 2rem; /* Adjust font size as needed */
 }
